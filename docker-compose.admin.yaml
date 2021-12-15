@@ -1,0 +1,13 @@
+version: "3"
+services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    # user: 1001:1000
+    ports:
+      - 9981:80 
+    volumes:
+      - ./vw-data:/data
+    environment:
+      - ADMIN_TOKEN=${ADMIN_TOKEN}
+      - SIGNUPS_ALLOWED=false
