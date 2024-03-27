@@ -3,10 +3,16 @@ services:
   vaultwarden:
     image: vaultwarden/server:latest
     container_name: vaultwarden
-    # user: 1001:1000
+    user: 1000:1000
     ports:
-      - 9980:80 
+      - 127.0.0.1:9980:8080 
     volumes:
       - ./vw-data:/data
     environment:
       - SIGNUPS_ALLOWED=false
+      - ROCKET_PORT=8080
+      - EXTENDED_LOGGING=true
+      - ORG_EVENTS_ENABLED=true
+      - LOG_FILE=/data/vaultwarden.log
+      - LOG_LEVEL=trace
+    restart: unless-stopped
